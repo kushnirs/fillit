@@ -6,7 +6,7 @@
 /*   By: skushnir <skushnir@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 23:15:12 by skushnir          #+#    #+#             */
-/*   Updated: 2017/11/20 03:34:33 by skushnir         ###   ########.fr       */
+/*   Updated: 2017/11/20 10:26:55 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 
 static int	ft_valid_figure(t_square *figure)
 {
+	int			i;
+	t_square	*tmp;
+
+	i = 65;
+	tmp = figure;
+	while (tmp)
+	{
+		tmp->word = i;
+		tmp = tmp->next;
+	}	
 	return (1);
 }
 
@@ -43,8 +53,7 @@ static int	ft_figure(int fd, char *str)
 		fig = fig + 4;
 	}
 	free (str);
-	if (ft_valid_figure(figure) == 0)
-		return (0);
+	ft_algorithm(figure);
 }
 
 static int	ft_valid_symb(int fd, char *str)
@@ -125,6 +134,8 @@ int			main(int argc, char **argv)
 		return(write(1, "error\n",6));
 	if (ft_figure(fd, str) == 0)
 		return(write(1, "error\n",6));
+		if (ft_valid_figure(figure) == 0)
+		return (0);
 	//printf("yspeh\n");
 	return (0);
 }
