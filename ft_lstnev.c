@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-t_square	*ft_lstnev()
+t_square	*ft_lstnev(void)
 {
 	t_square	*figure;
 

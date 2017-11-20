@@ -12,30 +12,33 @@
 
 #include "fillit.h"
 
-void	ft_bit_figure(t_square figure)
+void	ft_bit_figure()
 {
-	int	i;
-	int	j;
+	int			i;
+	int			j;
+	t_square	*tmp;	
 
-	while (figure)
+	tmp = NULL;
+	tmp = g_figure;
+	while (tmp)
 	{
-		i = 0;
-		while (figure->map[i])
+		i = -1;
+		while (tmp->map[++i])
 		{
-			j = 0;
-			while (figure->map[i][j])
-				if (figure->map[i][j] == '#')
-					figure->sqr = 1 << 63 - j++;
-			i++;
+			j = -1;
+			while (tmp->map[i][++j])
+				if (tmp->map[i][j] == '#')
+					tmp->sqr = tmp->sqr | (1L << (i * 16 + j));
 		}
-		figure = figure->next;
+		tmp = tmp->next;
 	}
-	int num=8, i;
-    for(i=sizeof(num)*8-1; i>=0; --i)
-        printf("%d", num&(1<<i)?1:0);
+	unsigned long num = g_figure->sqr;
+	int k;
+    for(k = 63; k >= 0; --k)
+        printf("%d", num & (1L << k) ? 1 : 0);
 }
 
-void ft_algorithm(t_square figure)
+void ft_algorithm(void)
 {
-	ft_bit_figure(figure);
+	ft_bit_figure();
 }

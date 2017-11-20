@@ -13,22 +13,25 @@
 #ifndef FILLIT_H
 # define FILLIT_H
 
-// # include <unistd.h>
 # include <fcntl.h>
-// # include <string.h>
-// # include <stdlib.h>
 # include "libft/libft.h"
 
 # include <stdio.h>
 
 typedef struct	s_square
 {
-	int				word;
+	int				letter;
 	char			**map;
 	unsigned long	sqr;
 	struct s_square	*next;
 }				t_square;
 
-t_square	*ft_lstnev();
+extern t_square	*g_figure;
+t_square		*ft_lstnev();
+void			ft_bit_figure(void);
+void			ft_algorithm(void);
+int				ft_valid_symb(int fd, char *str);
+int				ft_valid_lbr(int fd, char *str);
+int				ft_valid_figure(void);
 
 #endif
