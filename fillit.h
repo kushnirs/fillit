@@ -22,16 +22,20 @@ typedef struct	s_square
 {
 	int				letter;
 	char			**map;
+	char			x;
+	char			y;
+	char			h;
+	char			w;
 	unsigned long	sqr;
 	struct s_square	*next;
 }				t_square;
 
 extern t_square	*g_figure;
 t_square		*ft_lstnev();
-void			ft_bit_figure(void);
 void			ft_algorithm(void);
 int				ft_valid_symb(int fd, char *str);
 int				ft_valid_lbr(int fd, char *str);
 int				ft_valid_figure(void);
+void			ft_output(int size);
 
 #endif
