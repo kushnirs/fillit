@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   output.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skushnir <skushnir@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/21 16:43:40 by skushnir          #+#    #+#             */
-/*   Updated: 2017/11/21 21:00:41 by ahrytsen         ###   ########.fr       */
+/*   Updated: 2017/11/26 16:19:49 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,14 @@ static void	ft_fill_sqr(char **square, t_square *figures)
 {
 	int		i;
 	int		j;
-	int		h;
-	int		w;
 
 	i = figures->y - 1;
-	h = 0;
 	while (++i < (figures->y + figures->h))
 	{
-		w = 0;
 		j = figures->x - 1;
 		while (++j < (figures->x + figures->w))
-			figures->sqr & (1L << (63 - (h * 16 + w++))) ?
+			figures->sqr & (1L << (16 * i + 15 - (j - figures->x))) ?
 				square[i][j] = figures->letter : 0;
-		h++;
 	}
 }
 

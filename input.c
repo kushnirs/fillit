@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skushnir <skushnir@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 23:15:12 by skushnir          #+#    #+#             */
-/*   Updated: 2017/11/20 10:26:55 by skushnir         ###   ########.fr       */
+/*   Updated: 2017/11/26 16:19:28 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,24 +64,18 @@ int			main(int argc, char **argv)
 
 	if (argc != 2)
 		return (write(1, "error\n", 6));
-	if ((str = (char *)malloc(546)) == NULL)
+	if (!(str = (char *)malloc(546)))
 		return (0);
 	disp = open(argv[1], O_RDONLY);
-	if (fd == -1)
-		return (write(1, "error\n", 6));
 	fd = read(disp, str, 546);
 	str[fd] = 0;
-	close (fd);
-	if (fd > 545 || (fd + 1) % 21 != 0)
+	close(fd);
+	if (fd > 545 || (fd + 1) % 21 || fd == -1)
 		return (write(1, "error\n", 6));
-	if (ft_valid_lbr(fd, str) == 0)
+	if (ft_valid_lbr(fd, str) == 0 || ft_valid_symb(fd, str) == 0)
 		return (write(1, "error\n", 6));
-	if (ft_valid_symb(fd, str) == 0)
+	if (ft_figure(fd, str) == 0 || ft_valid_figure() == 0)
 		return (write(1, "error\n", 6));
-	if (ft_figure(fd, str) == 0)
-		return (write(1, "error\n", 6));
-	if (ft_valid_figure() == 0)
-		return (write(1, "error\n", 6));
-	ft_algorithm();
+	ft_algorithm(fd);
 	return (0);
 }
